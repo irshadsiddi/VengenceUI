@@ -305,6 +305,14 @@ html:not(.dark) .nextra-sidebar-container,
 html:not(.dark) div[data-nextra-sidebar="true"],
 html:not(.dark) article,
 html:not(.dark) main {
-  background-color: #ffffff !important;
   background: #ffffff !important;
+}
+
+/* 8. FORCE HEADER STYLING OVERRIDES */
+#installation,
+.nextra-container h2 {
+  font-weight: 700 !important;
+  font-size: 1.875rem !important;
+  /* 3xl */
+  letter-spacing: -0.025em !important;
 }

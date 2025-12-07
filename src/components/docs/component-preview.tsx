@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Code, Eye, Copy, Check, Terminal } from "lucide-react";
 import { Highlight, themes } from "prism-react-renderer";
 import { useTheme } from "next-themes";
+import { ComponentInstallation } from "./component-installation";
 
 interface ComponentPreviewProps {
     component: React.ReactNode;
@@ -12,6 +13,10 @@ interface ComponentPreviewProps {
     title?: string;
     className?: string;
     description?: string;
+    installation?: {
+        cli: string;
+        manual: React.ReactNode;
+    };
 }
 
 export function ComponentPreview({
@@ -20,6 +25,7 @@ export function ComponentPreview({
     title,
     className,
     description,
+    installation,
 }: ComponentPreviewProps) {
     const [activeTab, setActiveTab] = useState("preview");
     const [hasCopied, setHasCopied] = useState(false);
@@ -130,6 +136,10 @@ export function ComponentPreview({
                     </TabsContent>
                 </motion.div>
             </Tabs>
+
+            {installation && (
+                <ComponentInstallation cli={installation.cli} manual={installation.manual} />
+            )}
         </div>
     );
 }

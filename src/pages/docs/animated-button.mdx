@@ -1,4 +1,5 @@
-
+import { CodeBlock, Dependencies } from '@/components/docs/component-installation'
+import { PropsTable } from '@/components/docs/props-table'
 import AnimatedButton from '@/components/ui/animated-button'
 import { ComponentPreview } from '@/components/docs/component-preview'
 
@@ -8,6 +9,114 @@ A button with a shiny border and text reveal effect, perfect for calls to action
 
 <ComponentPreview
   component={<AnimatedButton>Explore Components</AnimatedButton>}
+  installation={{
+    cli: "npx shadcn@latest add https://vengeance-ui.vercel.app/registry/animated-button.json",
+    manual: (
+      <>
+        <Dependencies step={1} title="Install dependencies">
+            <CodeBlock 
+                code="npm install framer-motion clsx tailwind-merge" 
+            />
+        </Dependencies>
+        <Dependencies step={2} title="Add util file">
+            <p className="text-[13px] text-muted-foreground mt-2 mb-8">
+                <code className="text-foreground font-mono text-xs bg-neutral-100 dark:bg-[#161616] border border-neutral-200 dark:border-neutral-800 px-2 py-1 rounded-md">lib/utils.ts</code>
+            </p>
+            <CodeBlock 
+                language="tsx"
+                code={`import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}`}
+            />
+        </Dependencies>
+        <Dependencies step={3} title="Copy the source code">
+             <p className="text-[13px] text-muted-foreground mt-2 mb-8">Copy the code below and paste it into <code className="text-foreground font-mono text-xs bg-neutral-100 dark:bg-[#161616] border border-neutral-200 dark:border-neutral-800 px-2 py-1 rounded-md mx-1">components/ui/animated-button.tsx</code></p>
+             <CodeBlock
+                language="tsx"
+                expandable={true}
+                code={`'use client'
+
+import React from 'react'
+import { motion, type MotionProps } from 'framer-motion'
+import { cn } from '@/lib/utils'
+
+type AnimatedButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & MotionProps & {
+    children?: React.ReactNode
+}
+
+const AnimatedButton: React.FC<AnimatedButtonProps> = ({
+    children = 'Browse Components',
+    className = '',
+    whileTap = { scale: 0.97 },
+    transition = {
+        stiffness: 20,
+        damping: 15,
+        mass: 2,
+        scale: {
+            type: 'spring',
+            stiffness: 10,
+            damping: 5,
+            mass: 0.1,
+        },
+    },
+    ...rest
+}) => {
+    return (
+        <motion.button
+            {...rest}
+            whileTap={whileTap}
+            transition={transition}
+            className={cn(
+                "px-6 py-2 rounded-md relative overflow-hidden bg-neutral-50 dark:bg-black border border-neutral-300 dark:border-neutral-800 " +
+                "text-neutral-900 dark:text-neutral-100 [--shine:rgba(0,0,0,.66)] dark:[--shine:rgba(255,255,255,.66)]",
+                className
+            )}
+        >
+            <motion.span
+                className="tracking-wide font-light h-full w-full flex items-center justify-center relative z-10"
+                style={{
+                    WebkitMaskImage:
+                        'linear-gradient(-75deg, white calc(var(--mask-x) + 20%), transparent calc(var(--mask-x) + 30%), white calc(var(--mask-x) + 100%))',
+                    maskImage:
+                        'linear-gradient(-75deg, white calc(var(--mask-x) + 20%), transparent calc(var(--mask-x) + 30%), white calc(var(--mask-x) + 100%))',
+                }}
+                initial={{ ['--mask-x' as any]: '100%' } as any}
+                animate={{ ['--mask-x' as any]: '-100%' } as any}
+                transition={{ repeat: Infinity, duration: 1, ease: 'linear', repeatDelay: 1 }}
+            >
+                {children}
+            </motion.span>
+
+            <motion.span
+                className="block absolute inset-0 rounded-md p-px"
+                style={{
+                    background: 'linear-gradient(-75deg, transparent 30%, var(--shine) 50%, transparent 70%)',
+                    backgroundSize: '200% 100%',
+                    mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    maskComposite: 'exclude',
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                }}
+                initial={{ backgroundPosition: '100% 0', opacity: 0 }}
+                animate={{ backgroundPosition: ['100% 0', '0% 0'], opacity: [0, 1, 0] }}
+                transition={{ duration: 1, repeat: Infinity, ease: 'linear', repeatDelay: 1 }}
+            />
+        </motion.button>
+    )
+}
+
+export default AnimatedButton`}
+             />
+        </Dependencies>
+        <Dependencies step={4} title="Update imports">
+            <p className="text-sm text-muted-foreground">Ensure you update the import paths to match your project structure.</p>
+        </Dependencies>
+      </>
+    )
+  }}
   code={`'use client'
 
 import React from 'react'
@@ -89,4 +198,50 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
 export default AnimatedButton`}
   title="Animated Button"
   description="A slick button with a shine animation."
+/>
+
+## Usage
+
+<CodeBlock 
+    language="tsx" 
+    code={`import AnimatedButton from "@/components/ui/animated-button"
+
+export function AnimatedButtonDemo() {
+  return (
+    <AnimatedButton>
+      Get Started
+    </AnimatedButton>
+  )
+}`} 
+/>
+
+## Props
+
+<PropsTable
+  data={[
+    {
+      prop: "children",
+      type: "React.ReactNode",
+      defaultValue: "'Browse Components'",
+      description: "The content to be displayed inside the button."
+    },
+    {
+      prop: "className",
+      type: "string",
+      defaultValue: "''",
+      description: "Additional CSS classes to apply to the button."
+    },
+    {
+      prop: "whileTap",
+      type: "TargetAndTransition",
+      defaultValue: "{ scale: 0.97 }",
+      description: "Framer Motion animation properties for the tap (click) state."
+    },
+    {
+      prop: "transition",
+      type: "Transition",
+      defaultValue: "{ ...spring }",
+      description: "Framer Motion transition configuration."
+    }
+  ]}
 />

@@ -6,5 +6,6 @@ export default {
         "title": "Components"
     },
     "components-overview": "Overview",
-    "animated-button": "Animated Button"
+    "animated-button": "Animated Button",
+    "creepy-button": "Creepy Button"
 }

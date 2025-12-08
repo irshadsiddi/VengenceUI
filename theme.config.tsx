@@ -7,8 +7,8 @@ import { ModeToggle } from './src/components/mode-toggle'
 const config: DocsThemeConfig = {
     logo: (
         <div className="flex items-center">
-            <img src="/logo/bg-less.png" alt="Vengeance UI" width={55} height={55} className="rotate-180 dark:invert" />
-            <span className="font-extrabold text-xl tracking-tight hidden md:inline">Vengeance UI</span>
+            <img src="/logo/bg-less.png" alt="Vengeance UI" width={55} height={55} className="rotate-180 dark:brightness-0 dark:invert" />
+            <span className="font-extrabold text-xl tracking-tight hidden md:inline dark:text-white">Vengeance UI</span>
         </div>
     ),
     project: {
@@ -38,7 +38,7 @@ const config: DocsThemeConfig = {
         next: true,
     },
     footer: {
-        content: <p>© {new Date().getFullYear()} Vengeance UI. All rights reserved.</p>,
+        component: null,
     },
 }
 

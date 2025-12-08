@@ -198,6 +198,7 @@ aside,
 div[data-nextra-sidebar="true"] {
   padding-left: 0.5rem !important;
   margin-left: 0 !important;
+  padding-top: 4 !important;
   left: 0 !important;
 }
 
@@ -308,6 +309,55 @@ html:not(.dark) div[data-nextra-sidebar="true"],
 html:not(.dark) article,
 html:not(.dark) main {
   background: #ffffff !important;
+}
+
+/* FORCE NAVBAR/HEADER TO BLACK IN DARK MODE */
+.dark nav,
+.dark header,
+.dark .nextra-nav-container,
+.dark .nextra-nav-container-blur,
+.dark [class*="nav-container"] {
+  background-color: #000000 !important;
+  background: #000000 !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* NAVBAR IN LIGHT MODE */
+html:not(.dark) nav,
+html:not(.dark) header,
+html:not(.dark) .nextra-nav-container,
+html:not(.dark) .nextra-nav-container-blur,
+html:not(.dark) [class*="nav-container"] {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* REMOVE ALL FOOTER BORDERS AND ELEMENTS */
+footer,
+.nextra-footer,
+[class*="footer"] {
+  display: none !important;
+  border: none !important;
+  border-top: none !important;
+}
+
+/* FORCE LOGO TO WHITE IN DARK MODE */
+.dark nav img,
+.dark header img,
+.dark .nextra-nav-container img {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* FORCE LOGO TEXT TO WHITE IN DARK MODE */
+.dark nav span,
+.dark header span,
+.dark .nextra-nav-container span {
+  color: #ffffff !important;
 }
 
 /* FORCE HEADER STYLING OVERRIDES */

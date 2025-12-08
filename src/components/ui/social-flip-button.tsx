@@ -107,6 +107,7 @@ const SocialFlipNode = ({
                         frontClassName
                     )}
                     style={{ backfaceVisibility: "hidden" }}
+                    
                 >
                     {item.letter}
                 </div>
@@ -138,11 +139,25 @@ export default function SocialFlipButton({
 }: SocialFlipButtonProps) {
     const [isHovered, setIsHovered] = useState(false);
     const [tooltipIndex, setTooltipIndex] = useState<number | null>(null);
+    const [isDark, setIsDark] = useState(false);
+
+    React.useEffect(() => {
+        const checkTheme = () => {
+            setIsDark(document.documentElement.classList.contains('dark'));
+        };
+        checkTheme();
+        const observer = new MutationObserver(checkTheme);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <div className={cn("flex items-center justify-center gap-4 p-4", className)}>
             <div
-                className="group relative flex items-center justify-center gap-2 rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm dark:border-neutral-800 dark:bg-black"
+                className="group relative flex items-center justify-center gap-2 rounded-2xl bg-white p-4 shadow-sm dark:bg-black"
+                style={{
+                    border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)'}`,
+                }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => {
                     setIsHovered(false);

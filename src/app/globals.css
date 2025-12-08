@@ -163,10 +163,6 @@ body,
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
   body {
     @apply bg-background text-foreground;
   }
@@ -312,7 +308,7 @@ html:not(.dark) main {
 }
 
 /* FORCE NAVBAR/HEADER TO BLACK IN DARK MODE */
-.dark nav,
+.dark nav:not(.spotlight-nav),
 .dark header,
 .dark .nextra-nav-container,
 .dark .nextra-nav-container-blur,
@@ -325,7 +321,7 @@ html:not(.dark) main {
 }
 
 /* NAVBAR IN LIGHT MODE */
-html:not(.dark) nav,
+html:not(.dark) nav:not(.spotlight-nav),
 html:not(.dark) header,
 html:not(.dark) .nextra-nav-container,
 html:not(.dark) .nextra-nav-container-blur,

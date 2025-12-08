@@ -31,10 +31,21 @@ export function SpotlightNavbar({
     const navRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
     const [hoverX, setHoverX] = useState<number | null>(null);
+    const [isDark, setIsDark] = useState(false);
 
     // Refs for the "light" positions so we can animate them imperatively
     const spotlightX = useRef(0);
     const ambienceX = useRef(0);
+
+    useEffect(() => {
+        const checkTheme = () => {
+            setIsDark(document.documentElement.classList.contains('dark'));
+        };
+        checkTheme();
+        const observer = new MutationObserver(checkTheme);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
         if (!navRef.current) return;
@@ -112,11 +123,16 @@ export function SpotlightNavbar({
             <nav
                 ref={navRef}
                 className={cn(
-                    "relative h-11 rounded-full overflow-hidden transition-all duration-300",
-                    "border-2 border-black/20 dark:border-white/20",
-                    "bg-white dark:bg-black",
-                    "shadow-lg shadow-black/10 dark:shadow-white/10"
+                    "spotlight-nav relative h-11 rounded-full transition-all duration-300"
                 )}
+                style={{
+                    backgroundColor: isDark ? 'rgb(10, 10, 10)' : 'rgb(250, 250, 250)',
+                    border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)'}`,
+                    overflow: 'hidden',
+                    boxShadow: isDark 
+                        ? '0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5)'
+                        : '0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
+                }}
             >
                 {/* Content */}
                 <ul className="relative flex items-center h-full px-2 gap-0 z-[10]">

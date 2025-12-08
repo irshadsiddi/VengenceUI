@@ -13,13 +13,9 @@ export interface DockItem {
 }
 
 export interface GlassDockProps extends React.HTMLAttributes<HTMLDivElement> {
-    /**
-     * Array of dock items with title, icon, and optional callbacks
-     */
+    
     items: DockItem[];
-    /**
-     * Custom class for the dock container
-     */
+    
     dockClassName?: string;
 }
 
@@ -35,6 +31,17 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
     ) => {
         const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
         const [direction, setDirection] = useState(0);
+        const [isDark, setIsDark] = useState(false);
+
+        React.useEffect(() => {
+            const checkTheme = () => {
+                setIsDark(document.documentElement.classList.contains('dark'));
+            };
+            checkTheme();
+            const observer = new MutationObserver(checkTheme);
+            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+            return () => observer.disconnect();
+        }, []);
 
         const handleMouseEnter = (index: number) => {
             if (hoveredIndex !== null && index !== hoveredIndex) {
@@ -53,12 +60,14 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
             >
                 <div
                     className={cn(
-                        'relative flex gap-4 items-center px-6 py-4 rounded-2xl',
-                        'bg-white dark:bg-black',
-                        'border border-neutral-200 dark:border-neutral-700',
-                        'shadow-lg shadow-black/10 dark:shadow-white/10',
+                        "relative flex gap-4 items-center px-6 py-4 rounded-2xl",
+                        "bg-white/80 dark:bg-black/80",
+                        "backdrop-blur-xl shadow-2xl",
                         dockClassName
                     )}
+                    style={{
+                        border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)'}`,
+                    }}
                     onMouseLeave={() => {
                         setHoveredIndex(null);
                         setDirection(0);

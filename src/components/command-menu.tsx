@@ -22,7 +22,7 @@ export function CommandMenu() {
 
         document.addEventListener("keydown", down)
         return () => document.removeEventListener("keydown", down)
-    }, [])
+    }, [open])
 
     const runCommand = React.useCallback((command: () => unknown) => {
         setOpen(false)

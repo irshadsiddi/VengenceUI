@@ -360,6 +360,15 @@ footer,
   color: #ffffff !important;
 }
 
+/* MAKE NAVBAR BREADCRUMB/DOCUMENT TEXT BOLD */
+nav a,
+header a,
+.nextra-nav-container a,
+.breadcrumb a,
+.nx-text-sm {
+  font-weight: 600 !important;
+}
+
 /* FORCE HEADER STYLING OVERRIDES */
 #installation,
 .nextra-container h2 {

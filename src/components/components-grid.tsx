@@ -16,7 +16,8 @@ import {
     Waves,
     MousePointerClick,
     Loader2,
-    Layers
+    Layers,
+    RefreshCw
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -69,6 +70,7 @@ const CreepyButton = dynamic(() => import('@/components/ui/creepy-button'), { ss
 const FlipText = dynamic(() => import('@/components/ui/flip-text').then(mod => mod.FlipText), { ssr: false })
 const MaskedAvatars = dynamic(() => import('@/components/ui/masked-avatars').then(mod => mod.MaskedAvatars), { ssr: false })
 const StaggeredGridDemo = dynamic(() => import('@/components/docs/staggered-grid').then(mod => mod.StaggeredGridDemo), { ssr: false, loading: () => <LoadingPlaceholder /> })
+const FlipFadeText = dynamic(() => import('@/components/ui/flip-fade-text').then(mod => mod.FlipFadeText), { ssr: false, loading: () => <LoadingPlaceholder /> })
 
 
 const components = [
@@ -224,6 +226,20 @@ const components = [
             <div className="absolute inset-0 bg-zinc-950 overflow-hidden flex items-center justify-center">
                 <div className="scale-[0.3] origin-center transform">
                     <StaggeredGridDemo />
+                </div>
+            </div>
+        )
+    },
+    {
+        title: "Flip Fade Text",
+        description: "3D word flip animation",
+        category: "Animations",
+        href: "/docs/flip-fade-text",
+        icon: RefreshCw,
+        component: (
+            <div className="absolute inset-0 flex items-center justify-center bg-neutral-50 dark:bg-neutral-950">
+                <div className="scale-[0.5] origin-center">
+                    <FlipFadeText words={["LOADING", "COMPUTING", "BUILDING"]} interval={2000} />
                 </div>
             </div>
         )

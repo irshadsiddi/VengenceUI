@@ -27,5 +27,6 @@ export default {
     "interactive-book": "Interactive Book",
     "spotlight-navbar": "Spotlight Navbar",
     "staggered-grid": "Staggered Grid",
-    "expandable-bento-grid": "Expandable Bento Grid"
+    "expandable-bento-grid": "Expandable Bento Grid",
+    "flip-fade-text": "Flip Fade Text"
 }

@@ -1,7 +1,7 @@
 import { CodeBlock, Dependencies } from '@/components/docs/component-installation'
 import { CLICommand } from '@/components/docs/cli-command'
 import { PropsTable } from '@/components/docs/props-table'
-import { AnimatedHeroDemo } from '@/components/docs/animated-hero'
+import { AnimatedHeroDemo, AnimatedHeroCustomTitleDemo, AnimatedHeroNoToggleDemo, AnimatedHeroCustomClassDemo } from '@/components/docs/animated-hero'
 import { ComponentPreview } from '@/components/docs/component-preview'
 
 # Animated Hero
@@ -299,29 +299,29 @@ export function HeroPage() {
 
 ### Custom Title
 
-<CodeBlock 
-    language="tsx" 
-    code={`<AnimatedHero title="HELLO WORLD" />`} 
+<ComponentPreview
+  component={<AnimatedHeroCustomTitleDemo />}
+  code={`<AnimatedHero title="HELLO WORLD" />`}
 />
 
 ### Without Theme Toggle
 
-<CodeBlock 
-    language="tsx" 
-    code={`<AnimatedHero 
+<ComponentPreview
+  component={<AnimatedHeroNoToggleDemo />}
+  code={`<AnimatedHero 
   title="MY APP" 
   showThemeToggle={false} 
-/>`} 
+/>`}
 />
 
 ### With Custom Class
 
-<CodeBlock 
-    language="tsx" 
-    code={`<AnimatedHero 
+<ComponentPreview
+  component={<AnimatedHeroCustomClassDemo />}
+  code={`<AnimatedHero 
   title="STYLED" 
   className="min-h-[600px]" 
-/>`} 
+/>`}
 />
 
 ## Props

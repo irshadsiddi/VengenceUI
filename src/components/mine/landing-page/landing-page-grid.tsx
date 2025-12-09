@@ -5,13 +5,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import imagesLoaded from 'imagesloaded'
 import { cn } from '@/lib/utils'
 
-// Import documented UI components for previews
+// Import ACTUAL UI components from the library
 import AnimatedButton from '@/components/ui/animated-button'
 import { CreepyButton } from '@/components/ui/creepy-button'
 import { FlipText } from '@/components/ui/flip-text'
+import { GlassDock } from '@/components/ui/glass-dock'
+import { LiquidText } from '@/components/ui/liquid-text'
+import { PerspectiveGrid } from '@/components/ui/perspective-grid'
+import SocialFlipButton from '@/components/ui/social-flip-button'
+import { SpotlightNavbar } from '@/components/ui/spotlight-navbar'
 import {
-    Sparkles, Book, Grid3X3, Users, Navigation,
-    Layers, Type, MousePointer2, Palette, Dock, PanelTop, Image
+    Sparkles, Book, Grid3X3, Users,
+    Layers, Type, MousePointer2, Palette, Dock, PanelTop, Image,
+    Home, Settings, User, Mail, Search
 } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -24,14 +30,16 @@ interface ComponentPreview {
     docPath: string
 }
 
-// Components with ZOOMED IN previews
+// Using ACTUAL UI library components as previews
 const documentedComponents: ComponentPreview[] = [
     {
         id: 'animated-button',
         name: 'Animated Button',
         icon: <MousePointer2 className="w-6 h-6" />,
         preview: (
-            <AnimatedButton className="text-[11px] px-3 py-1.5 scale-100">Hover</AnimatedButton>
+            <div className="w-full h-full flex items-center justify-center">
+                <AnimatedButton className="text-sm px-4 py-2">Hover Me</AnimatedButton>
+            </div>
         ),
         docPath: '/docs/animated-button'
     },
@@ -40,8 +48,8 @@ const documentedComponents: ComponentPreview[] = [
         name: 'Creepy Button',
         icon: <Sparkles className="w-6 h-6" />,
         preview: (
-            <div className="scale-[0.55] origin-center">
-                <CreepyButton>Click</CreepyButton>
+            <div className="w-full h-full flex items-center justify-center scale-[0.65]">
+                <CreepyButton>Click Me</CreepyButton>
             </div>
         ),
         docPath: '/docs/creepy-button'
@@ -51,9 +59,11 @@ const documentedComponents: ComponentPreview[] = [
         name: 'Flip Text',
         icon: <Type className="w-6 h-6" />,
         preview: (
-            <FlipText className="text-sm font-bold text-zinc-700 dark:text-zinc-300">
-                Flip
-            </FlipText>
+            <div className="w-full h-full flex items-center justify-center">
+                <FlipText className="text-xl font-bold text-zinc-700 dark:text-zinc-300">
+                    Flip
+                </FlipText>
+            </div>
         ),
         docPath: '/docs/flip-text'
     },
@@ -61,77 +71,116 @@ const documentedComponents: ComponentPreview[] = [
         id: 'glass-dock',
         name: 'Glass Dock',
         icon: <Dock className="w-6 h-6" />,
+        preview: (
+            <div className="w-full h-full flex items-center justify-center scale-[0.5]">
+                <GlassDock
+                    items={[
+                        { icon: Home, title: 'Home', href: '#' },
+                        { icon: User, title: 'User', href: '#' },
+                        { icon: Settings, title: 'Settings', href: '#' },
+                    ]}
+                    className="relative"
+                />
+            </div>
+        ),
         docPath: '/docs/glass-dock'
     },
     {
         id: 'gradient-tiles',
         name: 'Gradient Tiles',
-        icon: <Palette className="w-6 h-6" />,
+        icon: <Palette className="w-8 h-8" />,
         docPath: '/docs/gradient-tiles'
     },
     {
         id: 'liquid-text',
         name: 'Liquid Text',
         icon: <Type className="w-6 h-6" />,
+        preview: (
+            <div className="w-full h-full flex items-center justify-center scale-[0.7]">
+                <LiquidText text="Liquid" className="text-lg" />
+            </div>
+        ),
         docPath: '/docs/liquid-text'
-    },
-    {
-        id: 'interactive-book',
-        name: 'Interactive Book',
-        icon: <Book className="w-6 h-6" />,
-        docPath: '/docs/interactive-book'
-    },
-    {
-        id: 'expandable-bento',
-        name: 'Bento Grid',
-        icon: <Grid3X3 className="w-6 h-6" />,
-        docPath: '/docs/expandable-bento-grid'
-    },
-    {
-        id: 'testimonials-card',
-        name: 'Testimonials',
-        icon: <Users className="w-6 h-6" />,
-        docPath: '/docs/testimonials-card'
-    },
-    {
-        id: 'spotlight-navbar',
-        name: 'Spotlight Nav',
-        icon: <PanelTop className="w-6 h-6" />,
-        docPath: '/docs/spotlight-navbar'
     },
     {
         id: 'perspective-grid',
         name: 'Perspective Grid',
         icon: <Layers className="w-6 h-6" />,
+        preview: (
+            <div className="w-full h-full overflow-hidden rounded-lg">
+                <PerspectiveGrid />
+            </div>
+        ),
         docPath: '/docs/perspective-grid'
     },
     {
-        id: 'staggered-grid',
-        name: 'Staggered Grid',
-        icon: <Grid3X3 className="w-6 h-6" />,
-        docPath: '/docs/staggered-grid'
+        id: 'social-flip-button',
+        name: 'Social Flip',
+        icon: <MousePointer2 className="w-6 h-6" />,
+        preview: (
+            <div className="w-full h-full flex items-center justify-center scale-[0.45]">
+                <SocialFlipButton />
+            </div>
+        ),
+        docPath: '/docs/social-flip-button'
+    },
+    {
+        id: 'spotlight-navbar',
+        name: 'Spotlight Nav',
+        icon: <PanelTop className="w-6 h-6" />,
+        preview: (
+            <div className="w-full h-full flex items-center justify-center scale-[0.4]">
+                <SpotlightNavbar
+                    items={[
+                        { label: 'Home', href: '#' },
+                        { label: 'About', href: '#' },
+                        { label: 'Work', href: '#' },
+                    ]}
+                />
+            </div>
+        ),
+        docPath: '/docs/spotlight-navbar'
     },
     {
         id: 'masked-avatars',
         name: 'Masked Avatars',
-        icon: <Image className="w-6 h-6" />,
+        icon: <Image className="w-8 h-8" />,
         docPath: '/docs/masked-avatars'
+    },
+    // These components are complex, show icons instead
+    {
+        id: 'interactive-book',
+        name: 'Interactive Book',
+        icon: <Book className="w-8 h-8" />,
+        docPath: '/docs/interactive-book'
+    },
+    {
+        id: 'expandable-bento',
+        name: 'Bento Grid',
+        icon: <Grid3X3 className="w-8 h-8" />,
+        docPath: '/docs/expandable-bento-grid'
+    },
+    {
+        id: 'testimonials-card',
+        name: 'Testimonials',
+        icon: <Users className="w-8 h-8" />,
+        docPath: '/docs/testimonials-card'
+    },
+    {
+        id: 'staggered-grid',
+        name: 'Staggered Grid',
+        icon: <Grid3X3 className="w-8 h-8" />,
+        docPath: '/docs/staggered-grid'
     },
     {
         id: 'animated-hero',
         name: 'Animated Hero',
-        icon: <Sparkles className="w-6 h-6" />,
+        icon: <Sparkles className="w-8 h-8" />,
         docPath: '/docs/animated-hero'
-    },
-    {
-        id: 'social-flip',
-        name: 'Social Flip',
-        icon: <MousePointer2 className="w-6 h-6" />,
-        docPath: '/docs/social-flip-button'
     },
 ]
 
-// Featured components for center bento - ZOOMED IN
+// Featured components for center bento - using ACTUAL components
 const featuredComponents = [
     {
         id: 'creepy-button',
@@ -199,7 +248,7 @@ export function LandingPageGrid({
     useEffect(() => {
         if (!isLoaded) return
 
-        // Animate Text - SAME AS ORIGINAL
+        // Animate Text
         if (textRef.current) {
             const chars = textRef.current.querySelectorAll('.char')
             gsap.timeline({
@@ -217,7 +266,7 @@ export function LandingPageGrid({
             })
         }
 
-        // Animate Grid - SAME AS ORIGINAL
+        // Animate Grid
         if (gridFullRef.current) {
             const gridFullItems = gridFullRef.current.querySelectorAll('.grid__item')
             const numColumns = getComputedStyle(gridFullRef.current).getPropertyValue('grid-template-columns').split(' ').length
@@ -249,7 +298,7 @@ export function LandingPageGrid({
                 }, 0)
             })
 
-            // Bento animation - SAME AS ORIGINAL
+            // Bento animation
             const bentoContainer = gridFullRef.current.querySelector('.bento-container')
             if (bentoContainer) {
                 gsap.timeline({
@@ -279,7 +328,7 @@ export function LandingPageGrid({
         <div className={cn("shadow relative overflow-hidden w-full", className)}
             style={{ '--grid-item-translate': '0px' } as React.CSSProperties}>
 
-            {/* Center Text - ORIGINAL */}
+            {/* Center Text */}
             <section className="grid place-items-center w-full relative mt-[10vh]">
                 <div ref={textRef} className="text font-alt uppercase flex content-center text-[clamp(3rem,14vw,10rem)] leading-[0.7] text-neutral-900 dark:text-white">
                     {splitText(centerText)}
@@ -341,11 +390,11 @@ export function LandingPageGrid({
                         return (
                             <figure key={`${item.id}-${i}`} className="grid__item m-0 relative z-10 [perspective:800px] will-change-[transform,opacity] group cursor-pointer">
                                 <a href={item.docPath} className="block w-full h-full">
-                                    <div className="grid__item-img w-full h-full [backface-visibility:hidden] will-change-transform rounded-xl overflow-hidden shadow-sm border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex flex-col items-center justify-center transition-all duration-500 ease-out group-hover:scale-105 group-hover:shadow-xl group-hover:border-zinc-300 dark:group-hover:border-zinc-700">
-                                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0 rounded-xl" />
-                                        <div className="relative z-10 flex flex-col items-center justify-center gap-2 p-2">
+                                    <div className="grid__item-img w-full h-full [backface-visibility:hidden] will-change-transform rounded-xl overflow-hidden shadow-sm border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 transition-all duration-500 ease-out group-hover:scale-105 group-hover:shadow-xl group-hover:border-zinc-300 dark:group-hover:border-zinc-700">
+                                        {/* Full-size preview container */}
+                                        <div className="absolute inset-0 flex items-center justify-center p-2 overflow-hidden">
                                             {item.preview ? (
-                                                <div className="transition-transform duration-300 group-hover:scale-110">
+                                                <div className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
                                                     {item.preview}
                                                 </div>
                                             ) : (
@@ -353,7 +402,12 @@ export function LandingPageGrid({
                                                     {item.icon}
                                                 </div>
                                             )}
-                                            <span className="text-[8px] font-medium text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-700 dark:group-hover:text-zinc-200 transition-colors uppercase tracking-wider text-center">
+                                        </div>
+                                        {/* Gradient overlay on hover */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 rounded-xl" />
+                                        {/* Label at bottom */}
+                                        <div className="absolute bottom-0 left-0 right-0 p-2 z-20">
+                                            <span className="text-[9px] font-medium text-zinc-500 dark:text-zinc-400 group-hover:text-white transition-colors uppercase tracking-wider text-center block">
                                                 {item.name}
                                             </span>
                                         </div>

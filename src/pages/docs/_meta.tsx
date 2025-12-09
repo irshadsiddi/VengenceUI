@@ -14,6 +14,7 @@ export default {
     },
     "components-overview": "Overview",
     "animated-button": "Animated Button",
+    "animated-hero": "Animated Hero",
     "testimonials-card": "Testimonials Card",
     "flip-text": "Flip Text",
     "creepy-button": "Creepy Button",

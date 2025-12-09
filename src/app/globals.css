@@ -37,6 +37,12 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* AnimatedHero Component */
+  --rainbow-blue: 217 91% 60%;
+  --rainbow-pink: 330 81% 60%;
+  --rainbow-cyan: 180 77% 50%;
+  --stripe-color: rgba(255, 255, 255, 0.1);
 }
 
 html,
@@ -518,4 +524,46 @@ footer,
 
 .tile:nth-child(11n + 10):hover {
   background-color: rgb(253 224 71);
+}
+
+/* ============================================
+   AnimatedHero Component Styles
+   ============================================ */
+
+.dark {
+  --stripe-color: rgba(0, 0, 0, 0.3);
+}
+
+@keyframes aurora-bg {
+  0% {
+    background-position: 0% 50%, 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%, 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%, 0% 50%;
+  }
+}
+
+@keyframes aurora-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.animate-aurora-bg {
+  animation: aurora-bg 15s ease infinite;
+}
+
+.animate-aurora-blink {
+  animation: aurora-blink 2s ease-in-out infinite;
 }

@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const HeroSection = () => {
   return (
-    <div className="relative pt-80 pb-20 min-h-[70vh] w-full items-center">
+    <div className="relative pt-60 pb-20 min-h-[70vh] w-full items-center">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/20 dark:from-black dark:via-black dark:to-black pointer-events-none" />
 

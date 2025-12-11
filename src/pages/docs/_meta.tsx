@@ -32,5 +32,6 @@ export default {
     "folder-preview": "Folder Preview",
     "light-lines": "Light Lines",
     "line-hover-link": "Line Hover Link",
-    "logo-slider": "Logo Slider"
+    "logo-slider": "Logo Slider",
+    "stacked-logos": "Stacked Logos"
 }

@@ -1,0 +1,204 @@
+import { CLICommand } from '@/components/docs/cli-command'
+import { PropsTable } from '@/components/docs/props-table'
+import { ComponentPreview } from '@/components/docs/component-preview'
+import StackedLogosDemo, { StackedLogosFast, StackedLogosSlow, StackedLogosTwoGroups, StackedLogosWide } from '@/components/docs/stacked-logos'
+
+# Stacked Logos
+
+Multiple logo groups that animate in/out while stacked on top of each other. Perfect for showcasing many partners in a compact space.
+
+<ComponentPreview
+  component={<StackedLogosDemo />}
+  code={`import { StackedLogos } from "@/components/ui/stacked-logos"
+
+const group1 = [<Logo1 />, <Logo2 />, <Logo3 />, <Logo4 />]
+const group2 = [<Logo5 />, <Logo6 />, <Logo7 />, <Logo8 />]
+
+export function Partners() {
+  return (
+    <StackedLogos
+      logoGroups={[group1, group2, group3, group4]}
+      duration={20}
+      stagger={2}
+    />
+  )
+}`}
+/>
+
+## Features
+
+- **Stacked Animation** - Logos fade in/out while stacked
+- **Multiple Groups** - Display several logo stacks side by side
+- **Stagger Effect** - Groups animate with timing offset
+- **Tailwind First** - Uses Tailwind CSS, minimal raw CSS
+- **Light/Dark Mode** - Automatic theme adaptation
+- **Accessible** - Respects reduced motion preferences
+
+## Installation
+
+### CLI Installation
+
+<CLICommand componentName="stacked-logos" />
+
+### Manual Installation
+
+**Step 1:** Copy the component:
+
+```tsx
+// components/ui/stacked-logos.tsx
+"use client";
+
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+export interface StackedLogosProps {
+    logoGroups: React.ReactNode[][];
+    duration?: number;
+    stagger?: number;
+    logoWidth?: string;
+    className?: string;
+}
+
+export const StackedLogos = ({
+    logoGroups,
+    duration = 30,
+    stagger = 0,
+    logoWidth = "100px",
+    className,
+}: StackedLogosProps) => {
+    const itemCount = logoGroups[0]?.length || 0;
+
+    return (
+        <main
+            className={cn("stacked-logos flex flex-wrap gap-16 justify-center", className)}
+            style={{
+                "--duration": duration,
+                "--items": itemCount,
+                "--lists": logoGroups.length,
+                "--stagger": stagger,
+            } as React.CSSProperties}
+        >
+            {logoGroups.map((logos, groupIndex) => (
+                <ul
+                    key={groupIndex}
+                    className="stacked-logos__group grid m-0 p-0 list-none"
+                    style={{
+                        "--index": groupIndex,
+                        width: logoWidth,
+                        gridTemplate: "1fr / 1fr",
+                    } as React.CSSProperties}
+                >
+                    {logos.map((logo, logoIndex) => (
+                        <li
+                            key={logoIndex}
+                            className="stacked-logos__item col-start-1 row-start-1 grid place-items-center"
+                            style={{ "--i": logoIndex } as React.CSSProperties}
+                        >
+                            <div className="stacked-logos__logo w-full h-12 flex items-center justify-center [&>svg]:h-full [&>svg]:w-auto [&>svg]:fill-zinc-800 dark:[&>svg]:fill-zinc-200 [&>img]:h-full [&>img]:w-auto [&>img]:object-contain [&>img]:grayscale [&>img]:brightness-50 dark:[&>img]:brightness-125">
+                                {logo}
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            ))}
+        </main>
+    );
+};
+
+StackedLogos.displayName = "StackedLogos";
+export default StackedLogos;
+```
+
+**Step 2:** Add CSS to `globals.css`:
+
+```css
+/* StackedLogos - CSS Variables & Animations */
+.stacked-logos {
+  --duration: 30;
+  --items: 4;
+  --lists: 4;
+  --stagger: 0;
+}
+
+.stacked-logos__group {
+  --base-delay: calc(
+    sin((var(--index) / var(--lists)) * 45deg) * var(--stagger)
+  );
+}
+
+.stacked-logos__logo {
+  animation-name: stacked-logos-appear;
+  animation-duration: calc(var(--duration) * 1s);
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-delay: calc(
+    (var(--duration) / var(--items)) * (var(--items) - var(--i)) * -1s +
+    (var(--base-delay, 0) * 1s)
+  );
+}
+
+@keyframes stacked-logos-appear {
+  0%, 100% { opacity: 0; filter: blur(4px); }
+  5%, 20% { opacity: 1; filter: blur(0); }
+  25%, 100% { opacity: 0; filter: blur(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stacked-logos__logo {
+    animation: none;
+    opacity: 1;
+    filter: none;
+  }
+  .stacked-logos__item:not(:first-child) {
+    display: none;
+  }
+}
+```
+
+## Usage
+
+### Fast Animation
+
+<ComponentPreview
+  component={<StackedLogosFast />}
+  code={`<StackedLogos logoGroups={groups} duration={10} stagger={1} />`}
+/>
+
+### Slow Animation
+
+<ComponentPreview
+  component={<StackedLogosSlow />}
+  code={`<StackedLogos logoGroups={groups} duration={40} stagger={3} />`}
+/>
+
+### Two Groups Only
+
+<ComponentPreview
+  component={<StackedLogosTwoGroups />}
+  code={`<StackedLogos logoGroups={[group1, group2]} duration={15} logoWidth="140px" />`}
+/>
+
+### Custom Width
+
+<ComponentPreview
+  component={<StackedLogosWide />}
+  code={`<StackedLogos logoGroups={groups} logoWidth="150px" stagger={1.5} />`}
+/>
+
+## Props
+
+<PropsTable
+  data={[
+    { prop: "logoGroups", type: "React.ReactNode[][]", defaultValue: "-", description: "Array of logo groups. Each group is an array of logo elements." },
+    { prop: "duration", type: "number", defaultValue: "30", description: "Full animation cycle duration in seconds." },
+    { prop: "stagger", type: "number", defaultValue: "0", description: "Stagger factor for timing offset between groups." },
+    { prop: "logoWidth", type: "string", defaultValue: "\"100px\"", description: "Width of each logo container." },
+    { prop: "className", type: "string", defaultValue: "-", description: "Additional classes." }
+  ]}
+/>
+
+## How It Works
+
+Each logo group is a stack of logos positioned on top of each other using CSS Grid (`grid-area: 1/1`). The logos animate in and out using a keyframe animation with calculated delays based on their index.
+
+The `stagger` prop creates a wave effect where each group starts its animation at a slightly different time, using CSS `sin()` for smooth timing distribution.

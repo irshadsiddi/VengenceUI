@@ -63,7 +63,7 @@ export const LogoSlider = ({
             <div
                 className={cn(
                     "logo-slider__container",
-                    "relative w-full min-h-[80px] grid pointer-events-none"
+                    "relative w-full min-h-[80px] grid"
                 )}
                 data-direction={direction}
                 data-pause-on-hover={pauseOnHover}
@@ -95,7 +95,7 @@ export const LogoSlider = ({
                 )}
 
                 {/* Logo Track */}
-                <ul className="logo-slider__track flex items-center h-full w-fit m-0 p-0 list-none pointer-events-none">
+                <ul className="logo-slider__track flex items-center h-full w-fit m-0 p-0 list-none">
                     {logos.map((logo, index) => (
                         <li
                             key={index}

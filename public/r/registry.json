@@ -704,5 +704,13 @@
     "files": [
       "public/r/logo-slider.json"
     ]
+  },
+  {
+    "name": "stacked-logos",
+    "dependencies": [],
+    "type": "registry:ui",
+    "files": [
+      "public/r/stacked-logos.json"
+    ]
   }
 ]

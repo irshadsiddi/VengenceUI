@@ -957,6 +957,8 @@ footer,
       transparent calc((var(--blur-index) + 3) * calc((100 / var(--blurs)) * 1%)));
   backdrop-filter: blur(calc((var(--blur-index, 0) * var(--blur, 0)) * 1px));
   -webkit-backdrop-filter: blur(calc((var(--blur-index, 0) * var(--blur, 0)) * 1px));
+  background: inherit;
+  will-change: backdrop-filter;
 }
 
 /* Per-Item Animation (keyframes and calc-based animation) */

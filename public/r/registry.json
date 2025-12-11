@@ -399,6 +399,14 @@
     ]
   },
   {
+    "name": "logo-slider",
+    "dependencies": [],
+    "type": "registry:ui",
+    "files": [
+      "public/r/logo-slider.json"
+    ]
+  },
+  {
     "name": "masked-avatars",
     "dependencies": [
       "framer-motion"
@@ -611,6 +619,14 @@
     ]
   },
   {
+    "name": "stacked-logos",
+    "dependencies": [],
+    "type": "registry:ui",
+    "files": [
+      "public/r/stacked-logos.json"
+    ]
+  },
+  {
     "name": "staggered-grid",
     "dependencies": [
       "lucide-react"
@@ -695,22 +711,6 @@
     "type": "registry:ui",
     "files": [
       "public/r/tooltip.json"
-    ]
-  },
-  {
-    "name": "logo-slider",
-    "dependencies": [],
-    "type": "registry:ui",
-    "files": [
-      "public/r/logo-slider.json"
-    ]
-  },
-  {
-    "name": "stacked-logos",
-    "dependencies": [],
-    "type": "registry:ui",
-    "files": [
-      "public/r/stacked-logos.json"
     ]
   }
 ]

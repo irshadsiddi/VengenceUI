@@ -311,7 +311,7 @@ const components = [
         category: "Components",
         href: "/docs/logo-slider",
         icon: LayoutTemplate,
-        component: <div className="scale-[0.55] w-[180%] -ml-[40%] origin-top mt-8"><LogoSliderDemo /></div>
+        component: <div className="scale-[0.55] origin-center w-[180%] h-[180%] shrink-0 flex items-center justify-center"><LogoSliderDemo /></div>
     },
     {
         title: "Stacked Logos",

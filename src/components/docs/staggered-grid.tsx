@@ -4,12 +4,12 @@ import { StaggeredGrid, BentoItem } from "@/components/ui/staggered-grid";
 import { Github, Slack, Twitter } from "lucide-react";
 
 // Demo for component preview in docs - shows a visual representation of the grid
-export function StaggeredGridDemo() {
+export function StaggeredGridDemo({ className }: { className?: string }) {
     // Column offsets to create staggered effect
     const columnOffsets = [40, 80, 0, 60, 20, 90, 50];
 
     return (
-        <div className="relative w-full h-[500px] overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-black">
+        <div className={`relative w-full h-[500px] overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-black ${className || ''}`}>
             {/* Info Text Overlay */}
             <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 px-4 py-2 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm rounded-full border border-neutral-200 dark:border-neutral-700">
                 <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center">
@@ -90,10 +90,10 @@ export function StaggeredGridDemo() {
             </div>
 
             {/* Gradient overlays for edges */}
-            <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-neutral-100 dark:from-black to-transparent pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-neutral-100 dark:from-black to-transparent pointer-events-none" />
-            <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-neutral-100 dark:from-black to-transparent pointer-events-none" />
-            <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-neutral-100 dark:from-black to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-neutral-50 dark:from-black to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-neutral-50 dark:from-black to-transparent pointer-events-none" />
+            <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-neutral-50 dark:from-black to-transparent pointer-events-none" />
+            <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-neutral-50 dark:from-black to-transparent pointer-events-none" />
         </div>
     );
 }

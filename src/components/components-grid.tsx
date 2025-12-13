@@ -177,10 +177,11 @@ const components = [
         icon: Grid2X2,
         // Optimization: gridSize reduced from default 40 to 20 (400 tiles vs 1600 tiles)
         component: (
-            <div className="absolute inset-0 bg-neutral-900/50 flex items-center justify-center">
-                <div className="scale-75">
-                    <PerspectiveGrid gridSize={20} />
-                </div>
+            <div className="absolute inset-0 overflow-hidden">
+                <PerspectiveGrid
+                    gridSize={20}
+                    className="bg-neutral-50 dark:bg-black [--fade-stop:#fafafa] dark:[--fade-stop:#000000]"
+                />
             </div>
         )
     },
@@ -231,10 +232,8 @@ const components = [
         href: "/docs/staggered-grid",
         icon: Layers,
         component: (
-            <div className="absolute inset-0 bg-zinc-950 overflow-hidden flex items-center justify-center">
-                <div className="scale-[0.3] origin-center transform">
-                    <StaggeredGridDemo />
-                </div>
+            <div className="scale-[0.35] w-[285%] h-[285%] flex items-center justify-center overflow-hidden">
+                <StaggeredGridDemo className="border-none" />
             </div>
         )
     },

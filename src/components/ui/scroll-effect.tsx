@@ -56,7 +56,7 @@ interface ScrollEffectProps{
                             ['--i' as any]: i,
                             ['--j' as any]: 0
                         }}
-                        alt=''
+                        alt={`start-image${i}`}
                     />
                 ))
                 }
@@ -67,7 +67,7 @@ interface ScrollEffectProps{
                 {/* featured image */}
                 <img src={featured}
                     className='clip-img feat'
-                    alt=''
+                    alt='featured-image'
                 />
 
                 {/* middle images */}
@@ -86,7 +86,7 @@ interface ScrollEffectProps{
                                 ['--i' as any]: i + start.length,
                                 ['--j' as any]: 1
                             }}
-                            alt=''
+                            alt={`middle-image${i}`}
 
                         />
                     ))

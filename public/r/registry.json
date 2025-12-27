@@ -266,6 +266,14 @@
     ]
   },
   {
+    "name": "footer",
+    "dependencies": [],
+    "type": "registry:ui",
+    "files": [
+      "public/r/footer.json"
+    ]
+  },
+  {
     "name": "form",
     "dependencies": [
       "react-hook-form",
@@ -537,6 +545,16 @@
     "type": "registry:ui",
     "files": [
       "public/r/scroll-area.json"
+    ]
+  },
+  {
+    "name": "scroll-effect",
+    "dependencies": [
+      "framer-motion"
+    ],
+    "type": "registry:ui",
+    "files": [
+      "public/r/scroll-effect.json"
     ]
   },
   {

@@ -40,6 +40,7 @@
     "@react-three/drei": "^9.114.0",
     "@react-three/fiber": "^8.17.6",
     "@types/imagesloaded": "^4.1.7",
+    "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

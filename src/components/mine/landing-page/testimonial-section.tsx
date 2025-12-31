@@ -36,48 +36,49 @@ const demoItems = [
 export const TestimonialSection = () => {
     const { scrollY } = useScroll();
     const scrollVelocity = useVelocity(scrollY);
-    
 
-    const smoothVelocity = useSpring(scrollVelocity , {
+    const base_speed = 40;
+    const smoothVelocity = useSpring(scrollVelocity, {
         damping: 50,
         stiffness: 400
     })
 
-    const direction = useTransform(smoothVelocity , v =>{
+    const direction = useTransform(smoothVelocity, v => {
         if (v > 0) return -1;
         if (v < 0) return 1
-        return 0
+        return -1
     })
 
 
     const lastY = useRef(0)
-    useEffect(()=>{
-        return scrollY.on('change' ,(y)=>{
+    useEffect(() => {
+        return scrollY.on('change', (y) => {
             const diff = y - lastY.current
 
-            if(diff > 0) direction.set(-1)
-                else if(diff<0) direction.set(1)
+            if (diff > 0) direction.set(-1)
+            else if (diff < 0) direction.set(1)
             lastY.current = y
 
         })
-    } , [scrollY , direction])
+    }, [scrollY, direction])
 
     const x1 = useMotionValue(0);
     const x2 = useMotionValue(0)
     const x3 = useMotionValue(0)
 
-    useAnimationFrame((t , delta) =>{
+    useAnimationFrame((t, delta) => {
+        const autoMove = direction.get() * base_speed * (delta / 1000)
         const movedBy = direction.get() * (delta / 30)
 
-        x1.set(x1.get() + movedBy)
-        x2.set(x2.get() - movedBy)
-        x3.set(x3.get() + movedBy * 0.7)
+        x1.set(x1.get() + movedBy + autoMove)
+        x2.set(x2.get() - movedBy - autoMove)
+        x3.set(x3.get() + movedBy * 0.7 + autoMove)
     })
 
     return (
         <div className="grid grid-rows-auto  max-h-screen  relative mb-10 md:mb-30 gap-2 space-y-20 md:gap-8 overflow-hidden touch-pan-y ">
 
-            <motion.div 
+            <motion.div
                 style={{ x: x1 }}
                 className="flex flex-row  overflow-hidden rotate-45  ">
                 <TestimonialsCard2

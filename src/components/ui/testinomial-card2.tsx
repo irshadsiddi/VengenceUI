@@ -32,18 +32,17 @@ interface TestimonialsCardProps {
 export function TestimonialsCard2({ items, className }: TestimonialsCardProps) {
 
     return (
-        <Link href='/'>
+        <div className={cn("flex flex-row gap-4", className)}>
             {
                 items?.length > 0 && items.map((el, idx) => {
 
                     return (
 
-                        <div
+                        <Link href='/' key={idx}>
+                            <div
 
-                       
-                        className={cn(" items-center justify-center md:p-4 w-44 md:w-60  relative overflow-hidden rounded-lg bg-foreground text-background px-2 md:px-8 py-3.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-95 cursor-pointer my-4 ", className ,
-                            el.big == true && "h-80"
-                        )}>
+
+                                className={cn("flex flex-col items-center justify-center md:p-4 w-60 h-60 flex-1 relative overflow-hidden rounded-lg bg-foreground text-background px-2 md:px-8 py-3.5 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-95 cursor-pointer", el.big == true && "h-80")}>
                             <div className="gap-4 my-4 border-b">
                                 <div
                                     className=" grid  grid-cols-[1fr_1fr_1fr]  gap-2 md:gap-4    ">
@@ -61,11 +60,13 @@ export function TestimonialsCard2({ items, className }: TestimonialsCardProps) {
                                     <div className=""><FaTwitter /></div>
                                 </div>
                                 <p className="py-2 md:py-4">{el.description}</p></div>
-                        </div>
+                                </div>
+                        </Link>
                     )
                 })
             }
-        </Link>
+        </div>
+        
     )
 
 }

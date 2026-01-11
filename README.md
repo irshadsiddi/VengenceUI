@@ -46,7 +46,6 @@ VengeanceUI is built using modern frontend technologies:
 - **Vite** – Fast development server and build tool  
 - **ESLint & Prettier** – Code quality and formatting  
 
-*(Update this list if you add/remove technologies.)*
 
 ---
 

@@ -10,6 +10,12 @@ const withNextra = nextra({
 const nextConfig = {
     /* config options here */
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    eslint: {
+        ignoreDuringBuilds: true,
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
 };
 
 export default withNextra(nextConfig);

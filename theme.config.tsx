@@ -36,6 +36,9 @@ const config: DocsThemeConfig = {
     themeSwitch: {
         component: null
     },
+    search: {
+        component: null
+    },
     navigation: {
         prev: true,
         next: true,

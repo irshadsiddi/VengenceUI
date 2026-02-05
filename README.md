@@ -15,8 +15,12 @@
   <img src="https://img.shields.io/badge/Framer%20Motion-black?style=social&logo=framer" />
 </p>
 
-<img width="1200" height="675" alt="stage-1767884304520" src="https://github.com/user-attachments/assets/8883b9d5-57cf-4904-903a-2700a14f2642" />
 
+
+
+https://github.com/user-attachments/assets/05b58add-f66e-4a4c-a04b-5dc3fba8c88b
+
+---
 
 # VengeanceUI
 
